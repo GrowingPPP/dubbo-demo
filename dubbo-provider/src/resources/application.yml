@@ -1,0 +1,26 @@
+server:
+  port: 8001
+
+dubbo:
+  application:
+    name: provider
+
+  registry:
+    # 注册中心地址
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+    timeout: 6000
+#    address: 224.5.6.7:1234
+#    timeout: 60000
+#    protocol: multicast
+
+
+  # dubbo协议服务注册有问题，可能会注册到一个ping不通的host上，与机器的多网卡有关。可以到zookeeper下的dubbo下查看provider暴露的dubbo-url
+  # https://dubbo.apache.org/zh/blog/2019/10/01/%E7%A0%94%E7%A9%B6-dubbo-%E7%BD%91%E5%8D%A1%E5%9C%B0%E5%9D%80%E6%B3%A8%E5%86%8C%E6%97%B6%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/
+  protocol:
+    name: dubbo
+    port: 20880
+
+
+  scan:
+    base-packages: com.demo.provider.service
